@@ -45,7 +45,7 @@
 
             <div class="code-section">
                 <h2>JavaScript Code:</h2>
-                <pre><code>const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+                <pre><code>const hasTouch = "ontouchstart" in window && navigator.maxTouchPoints > 0;
 
 if (hasTouch) {
   document.body.classList.add("no-hover");
