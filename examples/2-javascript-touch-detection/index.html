@@ -23,8 +23,6 @@
                     <li>Hybrid devices (laptops with touchscreens) support both</li>
                     <li>Forces devices into binary categories</li>
                     <li>User might switch between input methods</li>
-                    <li><strong>False positives:</strong> Modern browsers (Chrome, Safari) include touch APIs even on non-touch devices like Macs</li>
-                    <li>Browser compatibility features can trigger false touch detection</li>
                 </ul>
             </div>
 
@@ -42,15 +40,6 @@
                     <h3>Detection Details:</h3>
                     <p><strong>ontouchstart in window:</strong> <span id="ontouchstart"></span></p>
                     <p><strong>navigator.maxTouchPoints:</strong> <span id="maxTouchPoints"></span></p>
-                    <div id="contradictionWarning" class="contradiction-warning" style="display: none;">
-                        <strong>🚨 CONTRADICTION DETECTED:</strong><br>
-                        Touch API exists but no touch hardware present!<br>
-                        <small>This causes a false positive in touch detection.</small>
-                    </div>
-                    <div class="warning-note">
-                        <strong>⚠️ Note:</strong> Even Mac devices without touchscreens often report <code>ontouchstart in window</code> as <code>true</code> 
-                        in Chrome and Safari, demonstrating why this method is unreliable!
-                    </div>
                 </div>
             </div>
 
