@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Example 4: @media (hover) Solution</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Example 4: @media (hover) Solution ✓</h1>
+
+            <div class="explanation recommended">
+                <h2>How it works:</h2>
+                <p>This modern CSS feature directly queries the device's hover capability:</p>
+                <ul>
+                    <li><strong>@media (hover: hover):</strong> Device supports hover</li>
+                    <li><strong>@media (hover: none):</strong> Device doesn't support hover</li>
+                </ul>
+
+                <h3>Why this is the best approach:</h3>
+                <ul>
+                    <li>✅ Directly asks the device about hover capability</li>
+                    <li>✅ No assumptions based on screen size or user-agent</li>
+                    <li>✅ Works correctly with hybrid devices</li>
+                    <li>✅ Future-proof and standards-based</li>
+                    <li>✅ No JavaScript required</li>
+                    <li>✅ Excellent browser support</li>
+                </ul>
+            </div>
+
+            <div class="demo-section">
+                <h2>Interactive Demo</h2>
+                <p>Try hovering or tapping the buttons below:</p>
+
+                <div class="button-group">
+                    <button class="demo-button primary">Primary Button</button>
+                    <button class="demo-button secondary">Secondary Button</button>
+                </div>
+
+                <div class="card-demo">
+                    <div class="card">
+                        <h3>Hover Card</h3>
+                        <p>
+                            This card will have hover effects on hover-capable devices and tap effects on touch devices.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="current-behavior">
+                    <p><strong>Current hover capability:</strong></p>
+                    <div class="behavior-indicator" id="behaviorIndicator"></div>
+                </div>
+
+                <div class="browser-support">
+                    <h3>Browser Support:</h3>
+                    <ul>
+                        <li>Chrome: 38+</li>
+                        <li>Firefox: 64+</li>
+                        <li>Safari: 9+</li>
+                        <li>Edge: 12+</li>
+                        <li>Opera: 25+</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h2>CSS Code:</h2>
+                <pre><code>/* Devices that support hover (e.g. mouse, trackpad) */
+@media (hover: hover) {
+  .demo-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+  }
+}
+
+/* Devices that don't support hover (e.g. touchscreens) */
+@media (hover: none) {
+  .demo-button:active {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+  
+  .card:active {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+}</code></pre>
+            </div>
+
+            <div class="comparison-section">
+                <h2>Comparison with Other Methods</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-item deprecated">
+                        <h4>Width-based Media Queries</h4>
+                        <p>❌ Assumes screen size = input type</p>
+                    </div>
+                    <div class="comparison-item deprecated">
+                        <h4>JavaScript Touch Detection</h4>
+                        <p>❌ Fails with hybrid devices</p>
+                    </div>
+                    <div class="comparison-item deprecated">
+                        <h4>User-Agent Sniffing</h4>
+                        <p>❌ Fragile and easily spoofed</p>
+                    </div>
+                    <div class="comparison-item recommended">
+                        <h4>@media (hover)</h4>
+                        <p>✅ Direct hover capability query</p>
+                    </div>
+                </div>
+            </div>
+
+            <a href="../../index.html" class="back-link">← Back to Examples</a>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

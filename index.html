@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>The Right Way to Handle Hover in CSS Across Devices</title>
+        <style>
+            body {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
+                    sans-serif;
+                max-width: 800px;
+                margin: 0 auto;
+                padding: 2rem;
+                line-height: 1.6;
+                color: #333;
+            }
+
+            h1 {
+                color: #2c3e50;
+                text-align: center;
+                margin-bottom: 2rem;
+            }
+
+            .example-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+                margin: 2rem 0;
+            }
+
+            .example-card {
+                border: 1px solid #ddd;
+                border-radius: 8px;
+                padding: 1.5rem;
+                background: #f9f9f9;
+            }
+
+            .example-card h3 {
+                margin-top: 0;
+                color: #2980b9;
+            }
+
+            .example-card p {
+                margin-bottom: 1rem;
+            }
+
+            .example-link {
+                display: inline-block;
+                background-color: #3498db;
+                color: white;
+                padding: 0.75rem 1.5rem;
+                text-decoration: none;
+                border-radius: 5px;
+                transition: background-color 0.3s ease;
+            }
+
+            .example-link:hover {
+                background-color: #2980b9;
+            }
+
+            .recommended {
+                border-color: #27ae60;
+                background: #f0f8f0;
+            }
+
+            .recommended h3 {
+                color: #27ae60;
+            }
+
+            .deprecated {
+                border-color: #e74c3c;
+                background: #fdf2f2;
+            }
+
+            .deprecated h3 {
+                color: #e74c3c;
+            }
+
+            .device-info {
+                background: #ecf0f1;
+                padding: 1rem;
+                border-radius: 5px;
+                margin: 1rem 0;
+                font-size: 0.9rem;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>The Right Way to Handle Hover in CSS Across Devices</h1>
+
+        <div class="device-info">
+            <strong>Current Device Info:</strong><br />
+            Screen Width: <span id="screenWidth"></span>px<br />
+            Touch Support: <span id="touchSupport"></span><br />
+            User Agent: <span id="userAgent"></span>
+        </div>
+
+        <div class="example-grid">
+            <div class="example-card deprecated">
+                <h3>1. Media Queries with Width</h3>
+                <p>Traditional approach using screen size to detect hover capability. Unreliable for hybrid devices.</p>
+                <a href="examples/1-media-queries-width/index.html" class="example-link">View Example</a>
+            </div>
+
+            <div class="example-card deprecated">
+                <h3>2. JavaScript Touch Detection</h3>
+                <p>Using JavaScript to detect touch events and assume no hover. Fails with hybrid devices.</p>
+                <a href="examples/2-javascript-touch-detection/index.html" class="example-link">View Example</a>
+            </div>
+
+            <div class="example-card deprecated">
+                <h3>3. User-Agent Sniffing</h3>
+                <p>Examining user-agent string to determine device type. Fragile and unreliable.</p>
+                <a href="examples/3-user-agent-sniffing/index.html" class="example-link">View Example</a>
+            </div>
+
+            <div class="example-card recommended">
+                <h3>4. @media (hover) Solution ✓</h3>
+                <p>Modern CSS feature that directly queries hover capability. The recommended approach!</p>
+                <a href="examples/4-media-hover-solution/index.html" class="example-link">View Example</a>
+            </div>
+        </div>
+
+        <script>
+            // Display current device information
+            document.getElementById("screenWidth").textContent = window.screen.width;
+            document.getElementById("touchSupport").textContent =
+                "ontouchstart" in window || navigator.maxTouchPoints > 0 ? "Yes" : "No";
+            document.getElementById("userAgent").textContent = navigator.userAgent;
+        </script>
+    </body>
+</html>

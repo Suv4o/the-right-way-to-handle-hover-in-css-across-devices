@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Example 3: User-Agent Sniffing</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Example 3: User-Agent Sniffing</h1>
+
+            <div class="explanation">
+                <h2>How it works:</h2>
+                <p>This approach examines the user-agent string to determine device type:</p>
+                <ul>
+                    <li><strong>Mobile keywords found:</strong> Assumes no hover support</li>
+                    <li><strong>No mobile keywords:</strong> Assumes hover support</li>
+                </ul>
+
+                <h3>Problems with this approach:</h3>
+                <ul>
+                    <li>User-agent strings can be spoofed or modified</li>
+                    <li>New devices might not match existing patterns</li>
+                    <li>Desktop browsers can emulate mobile user-agents</li>
+                    <li>Very fragile and unreliable</li>
+                </ul>
+            </div>
+
+            <div class="demo-section">
+                <h2>Interactive Demo</h2>
+                <p>Try hovering or tapping the button below:</p>
+                <button class="demo-button">Hover/Tap Me!</button>
+
+                <div class="current-behavior">
+                    <p><strong>Detected device type based on User-Agent:</strong></p>
+                    <div class="behavior-indicator" id="behaviorIndicator"></div>
+                </div>
+
+                <div class="detection-details">
+                    <h3>Detection Details:</h3>
+                    <p><strong>Your User-Agent:</strong></p>
+                    <div class="user-agent" id="userAgent"></div>
+                    <p><strong>Regex Pattern:</strong> <code>/Mobi|Android|iPhone|iPad/i</code></p>
+                    <p><strong>Pattern Match:</strong> <span id="patternMatch"></span></p>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h2>JavaScript Code:</h2>
+                <pre><code>const isTouchDevice = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
+
+if (isTouchDevice) {
+  document.body.classList.add("no-hover");
+} else {
+  document.body.classList.add("hover");
+}</code></pre>
+
+                <h2>CSS Code:</h2>
+                <pre><code>body.hover .demo-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+body.no-hover .demo-button:active {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}</code></pre>
+            </div>
+
+            <a href="../../index.html" class="back-link">← Back to Examples</a>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

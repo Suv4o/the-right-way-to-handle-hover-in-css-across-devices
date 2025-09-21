@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Example 2: JavaScript Touch Detection</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Example 2: JavaScript Touch Detection</h1>
+
+            <div class="explanation">
+                <h2>How it works:</h2>
+                <p>This approach uses JavaScript to detect touch support:</p>
+                <ul>
+                    <li><strong>Touch detected:</strong> Assumes no hover support</li>
+                    <li><strong>No touch detected:</strong> Assumes hover support</li>
+                </ul>
+
+                <h3>Problems with this approach:</h3>
+                <ul>
+                    <li>Hybrid devices (laptops with touchscreens) support both</li>
+                    <li>Forces devices into binary categories</li>
+                    <li>User might switch between input methods</li>
+                    <li><strong>False positives:</strong> Modern browsers (Chrome, Safari) include touch APIs even on non-touch devices like Macs</li>
+                    <li>Browser compatibility features can trigger false touch detection</li>
+                </ul>
+            </div>
+
+            <div class="demo-section">
+                <h2>Interactive Demo</h2>
+                <p>Try hovering or tapping the button below:</p>
+                <button class="demo-button">Hover/Tap Me!</button>
+
+                <div class="current-behavior">
+                    <p><strong>Detected device type:</strong></p>
+                    <div class="behavior-indicator" id="behaviorIndicator"></div>
+                </div>
+
+                <div class="detection-details">
+                    <h3>Detection Details:</h3>
+                    <p><strong>ontouchstart in window:</strong> <span id="ontouchstart"></span></p>
+                    <p><strong>navigator.maxTouchPoints:</strong> <span id="maxTouchPoints"></span></p>
+                    <div id="contradictionWarning" class="contradiction-warning" style="display: none;">
+                        <strong>🚨 CONTRADICTION DETECTED:</strong><br>
+                        Touch API exists but no touch hardware present!<br>
+                        <small>This causes a false positive in touch detection.</small>
+                    </div>
+                    <div class="warning-note">
+                        <strong>⚠️ Note:</strong> Even Mac devices without touchscreens often report <code>ontouchstart in window</code> as <code>true</code> 
+                        in Chrome and Safari, demonstrating why this method is unreliable!
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h2>JavaScript Code:</h2>
+                <pre><code>const hasTouch = "ontouchstart" in window || navigator.maxTouchPoints > 0;
+
+if (hasTouch) {
+  document.body.classList.add("no-hover");
+} else {
+  document.body.classList.add("hover");
+}</code></pre>
+
+                <h2>CSS Code:</h2>
+                <pre><code>body.hover .demo-button:hover {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}
+
+body.no-hover .demo-button:active {
+  background-color: #2980b9;
+  transform: translateY(-2px);
+}</code></pre>
+            </div>
+
+            <a href="../../index.html" class="back-link">← Back to Examples</a>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Example 1: Media Queries with Width</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Example 1: Media Queries with Width</h1>
+
+            <div class="explanation">
+                <h2>How it works:</h2>
+                <p>This approach uses screen width to assume hover capability:</p>
+                <ul>
+                    <li><strong>Desktop (≥769px):</strong> Assumes hover support</li>
+                    <li><strong>Mobile (≤768px):</strong> Assumes no hover support</li>
+                </ul>
+
+                <h3>Problems with this approach:</h3>
+                <ul>
+                    <li>Small laptops support hover but may be ≤768px</li>
+                    <li>Large tablets don't support hover but may be ≥769px</li>
+                    <li>Screen size ≠ input method</li>
+                </ul>
+            </div>
+
+            <div class="demo-section">
+                <h2>Interactive Demo</h2>
+                <p>Try hovering or tapping the button below:</p>
+                <button class="demo-button">Hover/Tap Me!</button>
+
+                <div class="current-behavior">
+                    <p><strong>Current behavior based on screen width:</strong></p>
+                    <div class="behavior-indicator" id="behaviorIndicator"></div>
+                </div>
+            </div>
+
+            <div class="code-section">
+                <h2>CSS Code:</h2>
+                <pre><code>/* Assume desktop supports hover */
+@media (min-width: 769px) {
+  .demo-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+  }
+}
+
+/* Assume mobile doesn't support hover */
+@media (max-width: 768px) {
+  .demo-button:active {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+  }
+}</code></pre>
+            </div>
+
+            <a href="../../index.html" class="back-link">← Back to Examples</a>
+        </div>
+
+        <script>
+            const behaviorIndicator = document.getElementById("behaviorIndicator");
+            const screenWidth = window.innerWidth;
+
+            if (screenWidth >= 769) {
+                behaviorIndicator.innerHTML = `
+                <span style="color: #2980b9;">Desktop Mode (${screenWidth}px)</span><br>
+                Hover effects are enabled
+            `;
+            } else {
+                behaviorIndicator.innerHTML = `
+                <span style="color: #e74c3c;">Mobile Mode (${screenWidth}px)</span><br>
+                Only active/tap effects are enabled
+            `;
+            }
+        </script>
+    </body>
+</html>
